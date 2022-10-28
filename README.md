@@ -23,7 +23,7 @@ The latest build of the project can be found [here](https://pypi.org/project/see
 file. The file is published as a courtesy to the user, and it does not imply any obligation for support from the 
 publisher.
 
-1. Download the [Email Condition Monitor Installer.ipynb](https://github.com/seeq12/seeq-email-addon/tree/master/Email%20Condition%20Monitor%20Installer.ipynb) 
+1. Download the [Email Condition Monitor Installer.ipynb](Email%20Condition%20Monitor%20Installer.ipynb) 
 file. To make it easier to download, go to <a href="https://github.com/seeq12/seeq-email-addon/releases/latest" target="_blank">
 2. Create a **new** Seeq Data Lab project and upload the `Email Condition Monitor Installer.ipynb` file to the SDL 
    project.
