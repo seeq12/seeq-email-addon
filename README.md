@@ -45,7 +45,7 @@ Maintainer: Seeq
 Please cite this work as:
 
 ```shell
-seeq-azureml
+seeq-email-addon
 Seeq Corporation, 2022
 https://github.com/seeq12/seeq-email-addon
 ```
