@@ -258,7 +258,7 @@ class ConditionMonitorScheduler:
         displayable_selected_condition = next(filter(lambda row: 'header' not in row, displayable_conditions), None)
         self.selected_condition = displayable_selected_condition['value'] if displayable_selected_condition else None
 
-        self.app.condition.condition_value = displayable_selected_condition['value']
+        self.app.condition.condition_value = self.selected_condition
         self.app.condition.condition_items = displayable_conditions
 
     def set_data_table(self):
