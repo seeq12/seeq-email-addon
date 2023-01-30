@@ -2,7 +2,6 @@
 # The Python Worker is managed by Azure Functions platform
 # Manually managing azure-functions-worker may cause unexpected issues
 
-sendgrid~=6.9.7
 jsonschema~=4.16.0
 setuptools==65.4.1
 ipywidgets~=8.0.2
@@ -12,7 +11,7 @@ pandas~=1.5.0
 ipyvuetify~=1.8.4
 pytz~=2022.4
 requests~=2.28.1
-seeq~=58.0.1.184.7
+seeq~=58.2.1.184.25
 traitlets~=5.4.0
 parver~=0.3.1
 wheel~=0.37.1

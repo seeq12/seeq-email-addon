@@ -2,16 +2,13 @@ import json
 import re
 from collections import namedtuple
 import pytz
-import requests
-from seeq.addons.email.common import EmailConfiguration
+from seeq import spy
 
 
 class EmailBuilder:
 
-    def __init__(self, config_file=None):
-        config = EmailConfiguration(config_file)
-        self.configuration_email = config.get('email function condition monitor', 'Email Address')
-        self.configuration_url = config.get('email function condition monitor', 'Url')
+    def __init__(self):
+        pass
 
     @staticmethod
     def fill_in_template(template, capsule, job):
@@ -35,7 +32,6 @@ class EmailBuilder:
         html_content = self.fill_in_template(job['Html Template'], capsule, job)
 
         msg['subject'] = self.fill_in_template(job['Subject Template'], capsule, job)
-        msg['from_email'] = self.configuration_email
         msg['to_emails'] = ''.join(job['To'].split()).split(',')
         if job['Cc'] != '':
             msg['cc_emails'] = ''.join(job['Cc'].split()).split(',')
@@ -72,15 +68,15 @@ class EmailBuilder:
             messages_to_send.append((capsule, self.build_email(job, capsule)))
         for capsule, message in messages_to_send:
             try:
-                request = self.build_request(message)
-                response = requests.post(url=self.configuration_url, headers=getattr(request, 'headers'),
-                                         data=getattr(request, 'payload'))
-                if response.status_code == 202:
-                    sent_capsules.append(capsule)
-                else:
-                    raise Exception(
-                        f'Error sending the message to SendGrid. Received Status Code {response.status_code} with '
-                        f'reason: {response.text}')
+                spy.notifications.send_email(to=message['to_emails'],
+                                             cc=message['cc_emails'] if 'cc_emails' in message else None,
+                                             bcc=message['bcc_emails'] if 'bcc_emails' in message else None,
+                                             subject=message['subject'],
+                                             content=message['content'],
+                                             session=spy.session
+                                             )
+
+                sent_capsules.append(capsule)
             except Exception as ex:
                 exceptions.append((capsule, ex))
         return sent_capsules, exceptions

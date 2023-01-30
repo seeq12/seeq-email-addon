@@ -1,5 +1,5 @@
 from pathlib import Path
-from seeq.addons.email.common import installer, test_configuration, setup_config_file
+from seeq.addons.email.common import installer
 
 CURRENT_DIR = Path(__file__).parent.resolve()
 NAME = 'Condition Monitor Scheduler'
@@ -61,11 +61,3 @@ def install(permissions_group: list = None, permissions_users: list = None, seeq
         default_users=DEFAULT_USERS,
         scheduler_notebook_name=SCHEDULER_NOTEBOOK_NAME
     )
-
-
-def setup_email_config_file(config_file=None):
-    setup_config_file(CONFIGURATION_SECTION, config_file)
-
-
-def test_email_configuration(config_file=None):
-    test_configuration(config_section=CONFIGURATION_SECTION, config_file=config_file)
