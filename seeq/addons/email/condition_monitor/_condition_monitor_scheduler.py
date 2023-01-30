@@ -136,7 +136,7 @@ class ConditionMonitorScheduler:
         else:
             unschedule_button_disabled = pd.Series([self.jobs.loc[self.selected_condition, 'Scheduled']]).bool()
 
-        self.app.footer.schedule_button_disabled = self.selected_condition is None or not self.app.form_validated
+        self.app.footer.schedule_button_disabled = self.selected_condition is None or self.app.form_validated is False
         self.app.footer.unschedule_button_disabled = unschedule_button_disabled
 
         if self.selected_condition:
@@ -301,6 +301,23 @@ class ConditionMonitorScheduler:
         self.app.footer.stopped_job_warning = 'This job is not currently running.' if \
             self.jobs.loc[self.selected_condition]['Stopped'] else ''
 
+    def send_confirmation_email(self):
+        to = ''.join(self.app.tabs.scheduling_tab_content.to.split()).split(',')
+        cc = ''.join(self.app.tabs.scheduling_tab_content.cc.split()).split(',') \
+            if len(self.app.tabs.scheduling_tab_content.cc) > 0 else None
+        bcc = ''.join(self.app.tabs.scheduling_tab_content.bcc.split()).split(',') \
+            if len(self.app.tabs.scheduling_tab_content.bcc) > 0 else None
+
+        spy.notifications.send_email(to=to,
+                                     cc=cc,
+                                     bcc=bcc,
+                                     subject="Seeq Condition Monitoring Notifications",
+                                     content=f'This message is to let you know that you have been subscribed to '
+                                             f'receive notifications of the Seeq condition '
+                                             f'"{self.jobs.loc[self.selected_condition]["Condition Name"]}". If you'
+                                             f'believe this is a mistake, please contact your administrator.'
+                                     )
+
     def on_error(self, e):
         if isinstance(e, v.Html):
             message = e
@@ -327,11 +344,11 @@ class ConditionMonitorScheduler:
             return
         self.app.tabs.templates_tab_content.subject = self.SUBJECT_TEMPLATE_DEFAULT
         self.app.tabs.templates_tab_content.html = self.HTML_TEMPLATE_DEFAULT
-        if self.app.form_validated:
+        if self.app.form_validated is not False:
             self.app.footer.schedule_button_disabled = False
 
     def on_schedule(self, *_):
-        if not self.app.form_validated:
+        if self.app.form_validated is False:
             self.app.snackbar.color = 'error'
             self.app.snackbar.message = 'Please fix the errors above.'
             self.app.snackbar.value = True
@@ -383,6 +400,7 @@ class ConditionMonitorScheduler:
 
         self.app.condition.condition_items = self.displayable_conditions()
         self.set_data_table()
+        self.send_confirmation_email()
         self.app.footer.unschedule_button_disabled = False
         self.app.footer.schedule_button_loading = False
         self.on_success('Scheduled!')
