@@ -9,8 +9,8 @@ from pathlib import Path
 import os
 
 # Use the following command from a terminal window to generate the whl with source code
-# The arguments --condition-monitor --topic-distribution. Omitting the arguments will create all whl files
-# `python setup.py --condition_monitor --topic_distribution`
+# The arguments -condition-monitor -topic-distribution. Omitting the arguments will create all whl files
+# `python setup.py -condition_monitor -topic_distribution`
 
 CURRENT_DIR = Path(__file__).parent.resolve()
 BUILD_DIR = CURRENT_DIR.joinpath('build')
