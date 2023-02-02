@@ -9,7 +9,7 @@ import requests
 import warnings
 from seeq import spy
 from seeq.addons.email.condition_monitor.ui_components import AppScheduler
-from seeq.addons.email.common import get_ids_from_query_parameters
+from seeq.addons.email.common import get_ids_from_query_parameters, get_seeq_url
 from ._installer import NOTIFIER_NOTEBOOK_NAME, UNSUBSCRIBER_NOTEBOOK_NAME
 
 warnings.filterwarnings('ignore')
@@ -312,10 +312,10 @@ class ConditionMonitorScheduler:
                                      cc=cc,
                                      bcc=bcc,
                                      subject="Seeq Condition Monitoring Notifications",
-                                     content=f'This message is to let you know that you have been subscribed to '
-                                             f'receive notifications of the Seeq condition '
-                                             f'"{self.jobs.loc[self.selected_condition]["Condition Name"]}". If you'
-                                             f'believe this is a mistake, please contact your administrator.'
+                                     content=f'You have been subscribed to receive notifications of the Seeq condition '
+                                             f'"{self.jobs.loc[self.selected_condition]["Condition Name"]}" in '
+                                             f'{get_seeq_url()}. If you believe this is a mistake, please contact your '
+                                             f'administrator.'
                                      )
 
     def on_error(self, e):
