@@ -16,8 +16,8 @@ class Notifier:
     def get_polling_range(self):
         lookback_microseconds = int(24 * 60 * 60 * 1000 * 1000 * float(
             self.current_job['Lookback Interval']))
-        polling_range_end = datetime.now(pytz.utc)
-        polling_range_start = (polling_range_end - timedelta(microseconds=lookback_microseconds))
+        polling_range_end = pd.Timestamp('today', tz='utc')
+        polling_range_start = (polling_range_end - pd.Timedelta(lookback_microseconds, 'microseconds'))
         inception = pd.Timestamp(self.current_job['Inception'])
         if inception > polling_range_start:
             polling_range_start = inception
@@ -29,8 +29,8 @@ class Notifier:
 
         capsules_starting_in_lookback_interval = spy.pull(condition, start=polling_range_start, end=polling_range_end,
                                                           tz_convert='UTC')
-        if capsules_starting_in_lookback_interval.empty or 'Capsule Start' not in \
-                capsules_starting_in_lookback_interval:
+        if capsules_starting_in_lookback_interval.empty or \
+                'Capsule Start' not in capsules_starting_in_lookback_interval:
             capsules_starting_in_lookback_interval = pd.DataFrame()
         else:
             capsules_starting_in_lookback_interval = capsules_starting_in_lookback_interval[

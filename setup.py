@@ -9,8 +9,8 @@ from pathlib import Path
 import os
 
 # Use the following command from a terminal window to generate the whl with source code
-# The arguments --condition-monitor --topic-distribution. Omitting the arguments will create all whl files
-# `python setup.py --condition_monitor --topic_distribution`
+# The arguments -condition-monitor -topic-distribution. Omitting the arguments will create all whl files
+# `python setup.py -condition_monitor -topic_distribution`
 
 CURRENT_DIR = Path(__file__).parent.resolve()
 BUILD_DIR = CURRENT_DIR.joinpath('build')
@@ -28,7 +28,6 @@ addons = dict(
         author_email="alberto.rivas@seeq.com",
         description="Data Lab Notebook-based Email Condition Monitor Scheduling tool",
         install_requires=[
-            'sendgrid>=6.9.7',
             'jsonschema>=4.16.0',
             'beautifulsoup4>=4.9.3',
             'pytz>=2022.4',
@@ -43,7 +42,6 @@ addons = dict(
         author_email="alberto.rivas@seeq.com",
         description="Data Lab Notebook-based Email Condition Monitor Scheduling tool",
         install_requires=[
-            'sendgrid>=6.9.7',
             'jsonschema>=4.16.0',
             'beautifulsoup4>=4.9.3',
             'pytz>=2022.4',

@@ -6,8 +6,7 @@ from seeq.spy import Session
 from urllib.parse import urlparse, unquote
 from datetime import datetime, timezone
 import ipaddress
-import requests
-from seeq.addons.email.common import copy_folders, EmailConfiguration
+from seeq.addons.email.common import copy_folders
 
 
 def parse_url(url):
@@ -168,19 +167,3 @@ def installer(permissions_group, permissions_users, seeq_url=None, **kwargs):
         else:
             print(f'\nCommand "{choice}" is not valid')
             print('\n[enter] to continue the installation or type "quit" to exit installation')
-
-
-def setup_config_file(config_section, config_file=None):
-    config = EmailConfiguration(config_file, validate=False)
-    config.set(config_section, "Url", input("URL of email function: "))
-    config.set(config_section, "Email Address", input("Email Address: "))
-    test_configuration(config_section, config_file=config_file)
-
-
-def test_configuration(config_section, config_file=None):
-    config = EmailConfiguration(config_file)
-    test_response = requests.get(config.get(config_section, 'Url'))
-    if test_response.status_code == 200:
-        print('Success!')
-    else:
-        print(test_response.text)
