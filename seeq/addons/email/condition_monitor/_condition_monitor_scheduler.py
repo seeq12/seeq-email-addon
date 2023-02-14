@@ -302,6 +302,7 @@ class ConditionMonitorScheduler:
             self.jobs.loc[self.selected_condition]['Stopped'] else ''
 
     def send_confirmation_email(self):
+        # ''.join(x.split()).split(',') results in a list of addresses with leading and trailing spaces removed
         to = ''.join(self.app.tabs.scheduling_tab_content.to.split()).split(',')
         cc = ''.join(self.app.tabs.scheduling_tab_content.cc.split()).split(',') \
             if len(self.app.tabs.scheduling_tab_content.cc) > 0 else None
@@ -344,7 +345,7 @@ class ConditionMonitorScheduler:
             return
         self.app.tabs.templates_tab_content.subject = self.SUBJECT_TEMPLATE_DEFAULT
         self.app.tabs.templates_tab_content.html = self.HTML_TEMPLATE_DEFAULT
-        if self.app.form_validated is not False:
+        if self.app.form_validated is True:
             self.app.footer.schedule_button_disabled = False
 
     def on_schedule(self, *_):
