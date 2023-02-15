@@ -1,0 +1,7 @@
+include LICENSE
+global-exclude *.pyc
+global-exclude .ipynb_checkpoints
+graft seeq/addons/email/topic_distribution
+graft seeq/addons/email/condition_monitor/deploy_notebooks
+graft seeq/addons/email/condition_monitor/ui_components/vue_templates
+graft seeq/addons/email/common/ui_components/vue_templates
