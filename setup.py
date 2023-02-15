@@ -16,6 +16,9 @@ CURRENT_DIR = Path(__file__).parent.resolve()
 BUILD_DIR = CURRENT_DIR.joinpath('build')
 EGG = '.egg-info'
 
+with open("seeq/addons/email/condition_monitor/README.md", "r") as fh:
+    long_description_condition_monitor = fh.read()
+
 addons = dict(
     condition_monitor=dict(
         version_file="seeq/addons/email/condition_monitor/_version.py",
@@ -27,6 +30,7 @@ addons = dict(
         author="Alberto Rivas",
         author_email="alberto.rivas@seeq.com",
         description="Data Lab Notebook-based Email Condition Monitor Scheduling tool",
+        long_description=long_description_condition_monitor,
         install_requires=[
             'jsonschema>=4.16.0',
             'beautifulsoup4>=4.9.3',
@@ -41,6 +45,7 @@ addons = dict(
         author="Alberto Rivas",
         author_email="alberto.rivas@seeq.com",
         description="Data Lab Notebook-based Email Condition Monitor Scheduling tool",
+        long_description="",
         install_requires=[
             'jsonschema>=4.16.0',
             'beautifulsoup4>=4.9.3',
@@ -75,6 +80,8 @@ def create_setup_args_dict(addon_key):
         author=addons.get(addon_key).get('author'),
         author_email=addons.get(addon_key).get('author_email'),
         description=addons.get(addon_key).get('description'),
+        long_description=addons.get(addon_key).get('long_description'),
+        long_description_content_type="text/markdown",
         license='Apache License 2.0',
         platforms=["Linux", "Windows"],
         url="",
@@ -89,7 +96,7 @@ def create_setup_args_dict(addon_key):
             "License :: OSI Approved :: Apache Software License",
             "Operating System :: OS Independent",
         ],
-        python_requires='>=3.7',
+        python_requires='>=3.8',
     )
 
 
