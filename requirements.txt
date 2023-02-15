@@ -3,9 +3,9 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 jsonschema~=4.16.0
-setuptools==65.4.1
+setuptools==65.5.1
 ipywidgets~=8.0.2
-ipython~=8.5.0
+ipython~=8.10
 beautifulsoup4~=4.11.1
 pandas~=1.5.0
 ipyvuetify~=1.8.4
