@@ -1,11 +1,11 @@
-**seeq-email-condition-monitor** is a Python project that hosts a Seeq Data Lab addons to enable email 
-notifications triggered by Seeq conditions.
+**seeq-email-condition-monitor** is a Python project that hosts the **Condition Monitor Scheduler** Seeq Data Lab addon 
+to enable email notifications triggered by Seeq conditions.
 
 ----
 
 # User Installation Requirements (Seeq Data Lab)
 
-If you want to install **seeq-email-condition-monitor** as a Seeq Add-on Tool, you will need:
+If you want to install the **Condition Monitor Scheduler** Seeq add-on, you will need:
 
 - Seeq Data Lab (>=R58)
 - Seeq administrator access

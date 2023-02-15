@@ -1,14 +1,14 @@
-This repository is a Python project that hosts Seeq Data Lab based addons to enable email notifications.
+This repository is a Python project that hosts Seeq Data Lab based add-ons to enable email notifications.
 
 ----
 
-# Addons included
+# Add-ons included
 
 Currently, there is only one add-on on this project
 
 ## **seeq-email-condition-monitor**
 
-This addon monitors a Seeq condition and sends an email when the condition is triggered
+This add-on monitors a Seeq condition and sends an email when the condition is triggered
 
 ### User Installation Requirements (Seeq Data Lab)
 
