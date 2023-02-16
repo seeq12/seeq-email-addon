@@ -384,6 +384,9 @@ class ConditionMonitorScheduler:
                 label=self.workbook_id,
                 quiet=True
             )
+            self.send_confirmation_email()
+            self.app.condition.condition_items = self.displayable_conditions()
+            self.set_data_table()
         except Exception as e:
             msg = str(e)
             if 'Features/DataLab/ScheduledNotebooks/Enabled' in msg and 'Forbidden' in msg:
@@ -399,9 +402,6 @@ class ConditionMonitorScheduler:
             self.app.footer.schedule_button_loading = False
             return
 
-        self.app.condition.condition_items = self.displayable_conditions()
-        self.set_data_table()
-        self.send_confirmation_email()
         self.app.footer.unschedule_button_disabled = False
         self.app.footer.schedule_button_loading = False
         self.on_success('Scheduled!')
