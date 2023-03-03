@@ -19,9 +19,7 @@
       <v-text-field
           v-model="schedule"
           label="Schedule"
-          :rules="[v => !!v || 'A schedule frequency is required',
-        v => (v && !!/^every \d+ \w+$/.test(schedule.toLowerCase())) ||
-        'Provide a valid Cron expression, i.e. `every 15 minutes`']"
+          :rules="[v => !!v || 'A schedule frequency is required, e.g. `every 15 minutes` or `0 0 8/7 ? * * *`']"
       >
       </v-text-field>
       <v-textarea
