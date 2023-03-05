@@ -24,7 +24,7 @@ file. The file is published as a courtesy to the user, and it does not imply any
 publisher.
 
 1. Download the [Email Condition Monitor Installer.ipynb](Email%20Condition%20Monitor%20Installer.ipynb) 
-file. To make it easier to download, go to <a href="https://github.com/seeq12/seeq-email-addon/releases/latest" target="_blank">
+file. 
 2. Create a **new** Seeq Data Lab project and upload the `Email Condition Monitor Installer.ipynb` file to the SDL 
    project.
 3. Open the `Email Condition Monitor Installer.ipynb` notebook and follow the instructions in there. 

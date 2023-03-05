@@ -1,11 +1,16 @@
 # Changelog
 
-v0.2.1
+v0.3.2
 ---
 
-Refactored to use Vue templates
+Fixed bug in validation of Schedule field.
 
 v0.3.0
 ---
 
-Switched emailer service to Seeq email service
+Switched emailer service to Seeq email service.
+
+v0.2.1
+---
+
+Refactored to use Vue templates.
