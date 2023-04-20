@@ -7,7 +7,7 @@ to enable email notifications triggered by Seeq conditions.
 
 If you want to install the **Condition Monitor Scheduler** Seeq add-on, you will need:
 
-- Seeq Data Lab (>=R58)
+- Seeq Data Lab (>=R58.2)
 - Seeq administrator access
 
 # User Installation (Seeq Data Lab)
