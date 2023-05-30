@@ -15,22 +15,17 @@ def create_logger(name: str, output_file: str = None):
     if output_file is None:
         output_file = f"{name}.log"
     # Create a custom logger
+    logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger(name)
 
-    # Create handlers
-    c_handler = logging.StreamHandler()
+    # Create handler
     f_handler = logging.FileHandler(output_file)
-    c_handler.setLevel(logging.DEBUG)
-    f_handler.setLevel(logging.DEBUG)
 
     # Create formatters and add it to handlers
-    c_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    c_handler.setFormatter(c_format)
+    f_format = logging.Formatter('%(levelname)s %(asctime)s [%(name)s] - %(message)s')
     f_handler.setFormatter(f_format)
 
     # Add handlers to the logger
-    logger.addHandler(c_handler)
     logger.addHandler(f_handler)
 
     return logger

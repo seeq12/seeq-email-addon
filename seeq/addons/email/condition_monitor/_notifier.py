@@ -9,9 +9,10 @@ class Notifier:
 
     def __init__(self):
         self.logger = create_logger(self.__class__.__name__)
+        self.logger.propagate = False
         self.logger.info("Initializing Notifier")
         self.current_job = spy.jobs.pull()
-        self.logger.debug(f"Current job is: {self.current_job}")
+        self.logger.debug(f"Current job is: {self.current_job['Condition Name']}")
         self.capsule_handler = CapsuleHandler(current_job=self.current_job)
         self.email_builder = EmailBuilder()
 
@@ -44,11 +45,13 @@ class Notifier:
         return capsules_starting_in_lookback_interval
 
     def send_email(self):
+        self.logger.debug()
         polling_range_start, polling_range_end = self.get_polling_range()
         self.logger.debug(f"polling time range: {polling_range_start} - {polling_range_end}")
         capsules_starting_in_lookback_interval = self.get_capsules_starting_in_lookback_interval(polling_range_start,
                                                                                                  polling_range_end)
-        self.logger.debug(f'capsules_starting_in_lookback_interval > polling start time: {capsules_starting_in_lookback_interval}')
+        self.logger.debug(
+            f'capsules_starting_in_lookback_interval > polling start time: {capsules_starting_in_lookback_interval}')
         unsent_capsules = self.capsule_handler.get_unsent_capsules(self.capsule_handler.retrieve_sent_capsules(),
                                                                    capsules_starting_in_lookback_interval)
         self.logger.debug(f'unsent capsules: {unsent_capsules}')
@@ -62,7 +65,7 @@ class Notifier:
             self.logger.info(exceptions)
         except Exception as ex:
             emailed_capsules, exceptions = ([], [])
-            self.logger.info(f'Something went wrong sending emails: {ex}')
+            self.logger.error(f'Something went wrong sending emails: {ex}')
 
         if emailed_capsules:
             start_list = [capsule['Capsule Start'] for capsule in emailed_capsules]
