@@ -3,14 +3,15 @@ from seeq import spy
 from seeq.addons.email.common import create_logger
 from ._capsule_handler import CapsuleHandler
 from ._email_builder import EmailBuilder
+from ._version import __version__
 
 
 class Notifier:
 
-    def __init__(self):
-        self.logger = create_logger(self.__class__.__name__)
+    def __init__(self, debug_level="INFO"):
+        self.logger = create_logger(self.__class__.__name__, debug_level=debug_level)
         self.logger.propagate = False
-        self.logger.info("Initializing Notifier")
+        self.logger.info(f"Initializing Notifier. Version: {__version__}")
         self.current_job = spy.jobs.pull()
         self.capsule_handler = CapsuleHandler(current_job=self.current_job)
         self.email_builder = EmailBuilder()
@@ -40,7 +41,7 @@ class Notifier:
         return capsules_starting_in_lookback_interval
 
     def send_email(self):
-        self.logger.debug(f'start sending email for condition: {self.current_job["Condition Name"]}')
+        self.logger.info(f'start sending email for condition: {self.current_job["Condition Name"]}')
         self.logger.debug(f"Inception time: {self.current_job['Inception']}")
         polling_range_start, polling_range_end = self.get_polling_range()
         self.logger.debug(f"polling time range: {polling_range_start} - {polling_range_end}")
@@ -56,9 +57,9 @@ class Notifier:
         try:
             emailed_capsules, exceptions = self.email_builder.send_emails(self.current_job, unsent_capsules)
             self.logger.info(f'Emails were sent successfully for {len(emailed_capsules)} capsules:')
-            self.logger.info('Emailed capsules: \n\t' + emailed_capsules)
+            self.logger.info('Emailed capsules: \n\t' + f"{emailed_capsules}")
             self.logger.info(f'Send failed for {len(exceptions)} capsules:')
-            self.logger.info('Exceptions: \n\t' + exceptions)
+            self.logger.info('Exceptions: \n\t' + f"{exceptions}")
         except Exception as ex:
             emailed_capsules, exceptions = ([], [])
             self.logger.error('Something went wrong sending emails: \n\t' + str(ex))

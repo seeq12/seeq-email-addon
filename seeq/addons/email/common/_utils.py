@@ -11,11 +11,11 @@ def get_ids_from_query_parameters(jupyter_notebook_url):
     return dict(workbook_id=workbook_id, worksheet_id=worksheet_id, condition_id=condition_id)
 
 
-def create_logger(name: str, output_file: str = None):
+def create_logger(name: str, debug_level="INFO", output_file: str = None):
     if output_file is None:
         output_file = f"{name}.log"
     # Create a custom logger
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=getattr(logging, debug_level.upper()))
     logger = logging.getLogger(name)
 
     # Create handler
@@ -25,7 +25,12 @@ def create_logger(name: str, output_file: str = None):
     f_format = logging.Formatter('%(levelname)s %(asctime)s [%(name)s] - %(message)s')
     f_handler.setFormatter(f_format)
 
+    # Add the log message handler to the logger
+    rotating_handler = logging.handlers.RotatingFileHandler(
+        output_file, maxBytes=262144000, backupCount=5)
+
     # Add handlers to the logger
     logger.addHandler(f_handler)
+    logger.addHandler(rotating_handler)
 
     return logger
