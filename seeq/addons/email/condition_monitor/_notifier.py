@@ -1,5 +1,6 @@
 import pandas as pd
 from seeq import spy
+import IPython
 from seeq.addons.email.common import create_logger
 from ._capsule_handler import CapsuleHandler
 from ._email_builder import EmailBuilder
@@ -75,6 +76,34 @@ class Notifier:
                                                                               polling_range_start)
             self.logger.debug(pretty_print_df('sent_capsules_updated', sent_capsules_updated))
             self.capsule_handler.store_sent_capsules(sent_capsules_updated)
+
+        terminate_kernel(self.logger)
+
+
+def terminate_kernel(logger):
+    ipython = IPython.get_ipython()
+    if not is_ipython() or not is_ipython_interactive() or not ipython:
+        message = f'terminate_kernel must be invoked from a Jupyter notebook or other IPython-compatible environment.'
+        logger.error(message)
+        return
+
+    logger.info('The kernel is shutting down...')
+
+    if not ipython.kernel:
+        logger.error(f'Unable get IPython kernel to complete restart')
+    ipython.kernel.do_shutdown(True)
+
+
+def is_ipython():
+    # noinspection PyBroadException
+    try:
+        return IPython.get_ipython() is not None
+    except BaseException:
+        return False
+
+
+def is_ipython_interactive():
+    return IPython.get_ipython().__class__.__name__ == 'ZMQInteractiveShell'
 
 
 def pretty_print_df(message: str, df: pd.DataFrame):
