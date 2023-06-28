@@ -8,14 +8,22 @@ Currently, there is only one add-on on this project
 
 ## **seeq-email-condition-monitor**
 
-This add-on monitors a Seeq condition and sends an email when the condition is triggered
+This add-on monitors a Seeq condition and sends an email when the condition is triggered. This add-on is only 
+available for SaaS deployments of Seeq >=R58.2. For Seeq SaaS >=60, considered using the notifications feature in 
+the core Seeq product. 
 
 ### User Installation Requirements (Seeq Data Lab)
 
 If you want to install **seeq-email-condition-monitor** as a Seeq Add-on Tool, you will need:
 
-- Seeq Data Lab (>=R56)
+- Seeq Data Lab (>=R58.2)
 - Seeq administrator access
+- Seeq SaaS deployment (the Email service is not available for on-prem deployments)
+
+### Note for Seeq on-prem customers
+The email service that this add-on needs is not available for on-premise deployments. For on-premise deployments, an
+SMTP-only Email Notification Add-On is included within the SPy documentation that comes with every DataLab project.
+
 
 ### User Installation (Seeq Data Lab)
 
