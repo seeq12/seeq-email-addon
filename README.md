@@ -9,8 +9,8 @@ Currently, there is only one add-on on this project
 ## **seeq-email-condition-monitor**
 
 This add-on monitors a Seeq condition and sends an email when the condition is triggered. This add-on is only 
-available for SaaS deployments of Seeq >=R58.2. For Seeq SaaS >=60, considered using the notifications feature in 
-the core Seeq product. 
+available for SaaS deployments of Seeq >=R58.2. For Seeq SaaS >=R60, customers should use the notification feature 
+in the core Seeq product. 
 
 ### User Installation Requirements (Seeq Data Lab)
 
