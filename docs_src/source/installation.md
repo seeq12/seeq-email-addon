@@ -5,6 +5,12 @@ If you want to install the **Condition Monitor Scheduler** Seeq add-on, you will
 
 - Seeq Data Lab (>=R58.2)
 - Seeq administrator access
+- Seeq SaaS deployment (the Email service is not available for on-prem deployments)
+
+### Note for Seeq on-prem customers
+The email service that this add-on needs is not available for on-premise deployments. For on-premise deployments, an
+SMTP-only Email Notification Add-On is included within the SPy documentation that comes with every DataLab project.
+
 
 ## Add-on installation
 
