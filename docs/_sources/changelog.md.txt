@@ -1,5 +1,10 @@
 # Changelog
 
+v0.3.3
+---
+Fixed bug that caused delayed notifications.
+Added logger to help troubleshooting the add-on.
+
 v0.3.2
 ---
 
