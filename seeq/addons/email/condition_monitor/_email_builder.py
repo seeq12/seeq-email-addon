@@ -1,6 +1,8 @@
 import json
 import re
 from collections import namedtuple
+
+import pandas as pd
 import pytz
 from seeq import spy
 
@@ -19,7 +21,8 @@ class EmailBuilder:
         for to_replace, prop in capsule_substitutions:
             replacement = str(capsule[prop]) if prop in capsule else '{Capsule property not found}'
             if prop in ['Capsule Start', 'Capsule End']:
-                replacement = capsule[prop].astimezone(pytz.timezone(job['Time Zone'])).isoformat()
+                if not pd.isna(capsule[prop]):
+                    replacement = capsule[prop].astimezone(pytz.timezone(job['Time Zone'])).isoformat()
             template = template.replace(to_replace, replacement)
         for to_replace, prop in job_substitutions:
             replacement = str(job[prop]) if prop in job else '{Job property not found}'
