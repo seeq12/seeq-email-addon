@@ -59,8 +59,7 @@ class ConditionMonitorScheduler:
             <head></head>
             <body>
                 <b>Capsule alert!</b>
-                <p>A new capsule was identified in the Scheduled Email Sender with Capsule Start {capsule["Capsule 
-                Start"]}</p>
+                <p>A new capsule was identified in the Scheduled Email Sender with Capsule Start {capsule["Capsule Start"]}</p>
                 <p>Capsule details:</p>
                 <p><b>Start Time: </b>{capsule["Capsule Start"]}</p>
                 <p><b>End Time: </b>{capsule["Capsule End"]}</p>
