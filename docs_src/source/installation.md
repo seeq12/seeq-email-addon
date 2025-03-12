@@ -1,9 +1,11 @@
 # User Installation
+THIS ADD-ON HAS BEEN DEPRECATED. FOR SEEQ VERSIONS >=R60, CUSTOMERS SHOULD USE THE NOTIFICATION FEATURE IN THE CORE SEEQ PRODUCT.
 
 ## Requirements
 If you want to install the **Condition Monitor Scheduler** Seeq add-on, you will need:
 
 - Seeq Data Lab (>=R58.2)
+- Seeq Server (>=58.2, <=R60)
 - Seeq administrator access
 - Seeq SaaS deployment (the Email service is not available for on-prem deployments)
 
@@ -23,5 +25,3 @@ publisher.
 2. Create a **new** Seeq Data Lab project and upload the `Email Condition Monitor Installer.ipynb` file to the SDL
    project.
 3. Open the `Email Condition Monitor Installer.ipynb` notebook and follow the instructions in there. 
-
-
