@@ -1,3 +1,5 @@
+THIS PROJECT HAS BEEN DEPRECATED. FOR SEEQ VERSIONS >=R60, CUSTOMERS SHOULD USE THE NOTIFICATION FEATURE IN THE CORE SEEQ PRODUCT.
+
 This repository is a Python project that hosts Seeq Data Lab based add-ons to enable email notifications.
 
 ----

@@ -8,6 +8,8 @@
 Welcome to Condition Monitor Scheduler documentation
 ==============================================================
 
+THIS ADD-ON HAS BEEN DEPRECATED. FOR SEEQ VERSIONS >=R60, CUSTOMERS SHOULD USE THE NOTIFICATION FEATURE IN THE CORE SEEQ PRODUCT.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -28,5 +30,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-
